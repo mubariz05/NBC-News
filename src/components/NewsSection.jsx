@@ -1,17 +1,75 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/NewsSection.css";
-import mockNews from "../../lib/mockData";
 import NewsCard from "../components/NewsCard";
 import PickCard from "./PickCard";
-
+import { fetchArticlesByQuery } from "../api/newsService";
+import Loader from "./Loader";
 const tabs = ["Latest Stories", "Think", "Health"];
 
-const liveArticle = mockNews.find((a) => a.isLive) ?? mockNews[0];
-const editorsPicks = mockNews.filter((a) => a.isEditorsPick);
+const proxyImage = (url) =>
+  url
+    ? `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=600&h=400&fit=cover`
+    : null;
+
+const normalize = (a, i) => ({
+  id: i,
+  title: a.title || "Başlıq yoxdur",
+  description: a.description
+    ? a.description.slice(0, 120) + "..."
+    : "Məzmun mövcud deyil.",
+  image: (() => {
+    const url = a.urlToImage;
+    if (!url || url.includes("removed"))
+      return `https://picsum.photos/seed/${i}/600/400`;
+    return proxyImage(url);
+  })(),
+  author: a.author || a.source?.name || "Unknown",
+  timeAgo: new Date(a.publishedAt).toLocaleDateString(),
+  readTime: "3 min read",
+  likes: null,
+  category: a.source?.name,
+  isLive: i === 0,
+  isEditorsPick: i < 4,
+});
 
 const NewsSection = () => {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState(0);
   const [isListView, setIsListView] = useState(false);
+  const [page, setPage] = useState(1);
+  const PAGE_SIZE = 12;
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const load = async () => {
+      setLoading(true);
+      try {
+        const data = await fetchArticlesByQuery("news", PAGE_SIZE * page);
+        if (!cancelled) setArticles(data.articles || []);
+        if (!cancelled) {
+          setArticles(data.articles || []);
+          localStorage.setItem(
+            "cachedArticles",
+            JSON.stringify(data.articles || []),
+          );
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    };
+
+    load();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [page]);
+
+  const normalized = articles.map(normalize);
+  const liveArticle = normalized[0];
+  const editorsPicks = normalized.slice(0, 4);
 
   return (
     <section className="newsSection">
@@ -42,19 +100,35 @@ const NewsSection = () => {
             </button>
           </div>
 
-          <div
-            className={`newsSection__grid${isListView ? " newsSection__grid--list" : ""}`}
+          {loading ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "40px 0",
+              }}
+            >
+              <Loader />
+            </div>
+          ) : (
+            <div
+              className={`newsSection__grid${isListView ? " newsSection__grid--list" : ""}`}
+            >
+              {normalized.map((article) => (
+                <NewsCard
+                  key={article.id}
+                  article={article}
+                  isListView={isListView}
+                />
+              ))}
+            </div>
+          )}
+          <button
+            className="newsSection__viewMore"
+            onClick={() => setPage((p) => p + 1)}
           >
-            {mockNews.map((article) => (
-              <NewsCard
-                key={article.id}
-                article={article}
-                isListView={isListView}
-              />
-            ))}
-          </div>
-
-          <button className="newsSection__viewMore">VIEW MORE</button>
+            VIEW MORE
+          </button>
         </div>
 
         <aside className="newsSection__sidebar">
@@ -65,10 +139,12 @@ const NewsSection = () => {
               <div className="sidebar__liveDot" />
             </div>
           </div>
-          <div className="sidebar__liveCard">
-            <img src={liveArticle.image} alt={liveArticle.title} />
-            <p>{liveArticle.title}</p>
-          </div>
+          {liveArticle && (
+            <div className="sidebar__liveCard">
+              <img src={liveArticle.image} alt={liveArticle.title} />
+              <p>{liveArticle.title}</p>
+            </div>
+          )}
 
           <div className="sidebar__locationBox">
             <h4>Location News</h4>

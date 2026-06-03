@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../styles/Header.css";
 
 const Header = () => {
@@ -5,32 +6,34 @@ const Header = () => {
     <header className="header">
       <div className="container header__inner">
         <div className="header__logo">
-          <img src="icons/logo.svg" alt="news-logo" />
+          <Link to="/">
+            <img src="/icons/logo.svg" alt="news-logo" />
+          </Link>
         </div>
 
         <nav className="header__navbar">
           <ul className="header__list">
             <li className="liveLink">
               <span className="liveCircle"></span>
-              <a href="/corona">Corona Updates</a>
+              <a href="#">Corona Updates</a>
             </li>
             <li>
-              <a href="/politics">Politics</a>
+              <a href="#">Politics</a>
             </li>
             <li>
-              <a href="/business">Business</a>
+              <a href="#">Business</a>
             </li>
             <li>
-              <a href="/sports">Sports</a>
+              <a href="#">Sports</a>
             </li>
             <li>
-              <a href="/world">World</a>
+              <a href="#">World</a>
             </li>
             <li>
-              <a href="/travel">Travel</a>
+              <a href="#">Travel</a>
             </li>
             <li>
-              <a href="/podcasts">Podcasts</a>
+              <a href="#">Podcasts</a>
             </li>
           </ul>
           <img src="/icons/arrow.svg" alt="arrow" />

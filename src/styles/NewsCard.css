@@ -1,5 +1,6 @@
 /* ── NEWS CARD ── */
 .newsCard {
+    height: 380px;
     background: white;
     border-radius: 6px;
     overflow: hidden;

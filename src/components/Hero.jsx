@@ -1,24 +1,28 @@
+import { useEffect, useState } from "react";
 import "../styles/Hero.css";
+import { fetchHeroArticle } from "../api/newsService";
 
 const Hero = () => {
+  const [article, setArticle] = useState(null);
+
+  useEffect(() => {
+    fetchHeroArticle().then((data) => setArticle(data.articles?.[0] || null));
+  }, []);
+
+  if (!article) return null;
+
   return (
     <aside className="aside">
-      <img src="/img/news-5.svg" alt="news5" />
+      <img src={article.urlToImage || "/img/news-5.svg"} alt={article.title} />
       <div className="aside__body">
         <h2>Trending</h2>
-        <h4 className="aside__title">
-          Cake meme reflects coronavirus absurdity in a world where nothing is
-          what it seems
-        </h4>
-        <p className="aside__text">
-          Earlier this month, a viral video depicting hyper-realistic cakes as
-          everyday items had folks on social media double-guessing every other
-          post, and sometimes even their own realities, effectively launching
-          the next meme: "Is this real or is this cake?"
-        </p>
+        <h4 className="aside__title">{article.title}</h4>
+        <p className="aside__text">{article.description}</p>
         <p className="asideTitleFooter">
-          2 hours ago{" "}
-          <span className="time">By Lucy Hiddleston | 4min read</span>
+          {new Date(article.publishedAt).toLocaleDateString()}{" "}
+          <span className="time">
+            By {article.author || article.source?.name} | 4min read
+          </span>
         </p>
       </div>
     </aside>
