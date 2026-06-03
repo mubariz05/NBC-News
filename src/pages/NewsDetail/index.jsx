@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useMemo } from "react";
 import "./css/NewsDetail.css";
-import Loader from "../../components/Loader";
+import Loader from "@/components/Loader";
 
 const proxyImage = (url) =>
   url

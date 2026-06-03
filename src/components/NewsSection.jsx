@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import "../styles/NewsSection.css";
-import NewsCard from "../components/NewsCard";
-import PickCard from "./PickCard";
-import { fetchArticlesByQuery } from "../api/newsService";
-import Loader from "./Loader";
+import NewsCard from "@/components/NewsCard";
+import PickCard from "@/components/PickCard";
+import { fetchArticlesByQuery } from "@/api/newsService";
+import Loader from "@/components/Loader";
+
 const tabs = ["Latest Stories", "Think", "Health"];
 
 const proxyImage = (url) =>

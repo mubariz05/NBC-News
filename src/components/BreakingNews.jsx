@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styles/BreakingNews.css";
-import { fetchBreakingNews } from "../api/newsService";
-import Loader from "./Loader";
+import { fetchBreakingNews } from "@/api/newsService";
+import Loader from "@/components/Loader";
 
 const BreakingNews = () => {
   const [articles, setArticles] = useState([]);

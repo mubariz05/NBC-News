@@ -1,6 +1,6 @@
-import Hero from "../../components/Hero";
-import BreakingNews from "../../components/BreakingNews";
-import NewsSection from "../../components/NewsSection";
+import Hero from "@/components/Hero";
+import BreakingNews from "@/components/BreakingNews";
+import NewsSection from "@/components/NewsSection";
 
 const HomePage = () => {
   return (

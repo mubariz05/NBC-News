@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/Hero.css";
-import { fetchHeroArticle } from "../api/newsService";
+import { fetchHeroArticle } from "@/api/newsService";
 
 const Hero = () => {
   const [article, setArticle] = useState(null);
