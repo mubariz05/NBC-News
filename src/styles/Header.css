@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap');
+
+.header {
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    gap: 24px;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+/* LOGO */
+.header__logo img {
+    width: 80px;
+    height: 52px;
+    display: block;
+}
+
+/* NAV */
+.header__navbar {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex: 1;
+}
+
+.header__list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 24px;
+    flex-wrap: nowrap;
+}
+
+.header__list .liveLink {
+    position: relative;
+}
+
+.header__list .liveLink .liveCircle {
+    position: absolute;
+    top: 50%;
+    left: -14px;
+    transform: translateY(-50%);
+    background: #C31815;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    animation: livePulse 1.5s ease-in-out infinite;
+}
+
+.header__list a {
+    text-decoration: none;
+    color: #222;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: color 0.2s;
+}
+
+.header__list a:hover {
+    color: #C31815;
+}
+
+/* ACTIONS */
+.headerActions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.headerActions img {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+/* burger hidden on desktop */
+.headerActions .burger {
+    display: none;
+}
+
+/* MOBILE MENU */
+.header__mobileMenu {
+    display: none;
+    flex-direction: column;
+    background: white;
+    border-top: 1px solid #eee;
+    padding: 16px 20px 20px;
+}
+
+.header__mobileMenu.open {
+    display: flex;
+}
+
+.header__mobileMenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.header__mobileMenu ul li {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.header__mobileMenu ul li a {
+    display: block;
+    padding: 12px 4px;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #222;
+    transition: color 0.2s;
+}
+
+.header__mobileMenu ul li a:hover {
+    color: #C31815;
+}
+
+.header__mobileMenu ul li.liveLink {
+    position: relative;
+}
+
+.header__mobileMenu ul li.liveLink a {
+    padding-left: 18px;
+}
+
+.header__mobileMenu ul li.liveLink::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: #C31815;
+    border-radius: 50%;
+    animation: livePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ── TABLET (≤1024px) ── */
+@media (max-width: 1024px) {
+    .header__list {
+        gap: 16px;
+    }
+
+    .header__navbar {
+        gap: 20px;
+    }
+}
+
+/* ── MOBILE (≤768px) ── */
+@media (max-width: 768px) {
+    .header__inner {
+        height: 60px;
+        padding: 0 16px;
+        gap: 12px;
+    }
+
+    /* hide desktop nav */
+    .header__navbar {
+        display: none;
+    }
+
+    /* show burger */
+    .headerActions .burger {
+        display: block;
+    }
+
+    /* hide search/user on very small if needed — keep for now */
+    .headerActions {
+        gap: 14px;
+    }
+}
+
+/* ── SMALL (≤480px) ── */
+@media (max-width: 480px) {
+    .header__logo img {
+        width: 60px;
+        height: 40px;
+    }
+
+    .headerActions img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .headerActions {
+        gap: 12px;
+    }
+}

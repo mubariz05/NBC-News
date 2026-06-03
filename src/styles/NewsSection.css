@@ -1,0 +1,435 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Merriweather:wght@700&display=swap');
+
+.newsSection {
+    font-family: "Nunito Sans", sans-serif;
+    background: #f5f5f5;
+    padding: 24px 0 40px;
+}
+
+.newsSection__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 32px;
+}
+
+.newsSection__tabs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.newsSection__tabList {
+    display: flex;
+    gap: 0;
+}
+
+.newsSection__tab {
+    background: none;
+    border: none;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #888;
+    cursor: pointer;
+    padding: 6px 18px 10px;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.newsSection__tab.active {
+    color: #111;
+}
+
+.newsSection__tab.active::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #C31815;
+}
+
+.newsSection__gridBtn {
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px 7px;
+    cursor: pointer;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+
+.newsSection__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.newsSection__viewMore {
+    display: block;
+    margin: 24px auto 0;
+    background: none;
+    border: 1.5px solid #a01210;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 10px 36px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.newsSection__viewMore:hover {
+    background: #C31815;
+    color: white;
+}
+
+/* ── SIDEBAR ── */
+.newsSection__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sidebar__liveHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #111;
+}
+
+/* ── LIVE DOT ── */
+.sidebar__liveDotWrap {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar__liveDotRing {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(195, 24, 21, 0.3);
+    animation: liveRipple 1.8s ease-out infinite;
+}
+
+.sidebar__liveDot {
+    width: 10px;
+    height: 10px;
+    background: #C31815;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes liveRipple {
+    0% {
+        transform: scale(0.6);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.sidebar__liveCard {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.sidebar__liveCard img {
+    width: 90px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.sidebar__liveCard p {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* ── LOCATION BOX ── */
+.sidebar__locationBox {
+    background: white;
+    border: 1px solid #ebebeb;
+    border-radius: 6px;
+    padding: 16px;
+}
+
+.sidebar__locationBox h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    color: #111;
+}
+
+.sidebar__locationBox p {
+    font-size: 12px;
+    color: #888;
+    margin: 0 0 12px;
+}
+
+.sidebar__locationBox input {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-size: 13px;
+    font-family: "Nunito Sans", sans-serif;
+    outline: none;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
+}
+
+.sidebar__locationBox input:focus {
+    border-color: #C31815;
+}
+
+.sidebar__locationBox button {
+    width: 100%;
+    background: #C31815;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    font-family: "Nunito Sans", sans-serif;
+    transition: background 0.2s;
+}
+
+.sidebar__locationBox button:hover {
+    background: #a01210;
+}
+
+/* ── EDITOR'S PICKS ── */
+.editorPicks {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 0 20px;
+}
+
+.editorPicks__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.editorPicks__header h2 {
+    font-family: "Merriweather", serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+}
+
+.editorPicks__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.pickCard {
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #ebebeb;
+    display: flex;
+    gap: 0;
+    transition: box-shadow 0.2s;
+}
+
+.pickCard:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+}
+
+.pickCard__imgWrap {
+    position: relative;
+    width: 160px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.pickCard__imgWrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.pickCard:hover .pickCard__imgWrap img {
+    transform: scale(1.04);
+}
+
+.pickCard__body {
+    padding: 14px 16px;
+}
+
+.pickCard__body h3 {
+    font-family: "Merriweather", serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 8px;
+    line-height: 1.45;
+}
+
+.pickCard__body p {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+
+/* ── LIST VIEW — grid becomes single column ── */
+.newsSection__grid--list {
+    grid-template-columns: 1fr !important;
+}
+
+/* grid button active state */
+.newsSection__gridBtn--active {
+    background: #f0f0f0;
+    border-color: #aaa;
+    color: #111;
+}
+
+/* card in list mode: horizontal layout */
+.newsCard--list {
+    flex-direction: row;
+}
+
+.newsCard--list .newsCard__imgWrap {
+    width: 200px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.newsCard--list .newsCard__body {
+    padding: 16px 20px;
+}
+
+.newsCard--list .newsCard__title {
+    font-size: 15px;
+}
+
+.newsCard--list .newsCard__desc {
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* on mobile, list view still stacks vertically */
+@media (max-width: 480px) {
+    .newsCard--list {
+        flex-direction: column;
+    }
+
+    .newsCard--list .newsCard__imgWrap {
+        width: 100%;
+        height: 180px;
+    }
+}
+
+
+
+/* ── NEWS SECTION (main + sidebar) ── */
+@media (max-width: 1024px) {
+    .newsSection__container {
+        grid-template-columns: 1fr 240px;
+        gap: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .newsSection__container {
+        grid-template-columns: 1fr;
+        padding: 0 14px;
+    }
+
+    .newsSection__sidebar {
+        order: -1;
+        /* sidebar goes above on mobile */
+    }
+
+    .newsSection__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .newsSection__tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .newsSection__tabs::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .newsSection__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .newsSection__viewMore {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+
+/* ── EDITOR'S PICKS ── */
+@media (max-width: 768px) {
+    .editorPicks {
+        padding: 0 14px;
+    }
+
+    .editorPicks__grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pickCard {
+        flex-direction: column;
+    }
+
+    .pickCard__imgWrap {
+        width: 100%;
+        height: 160px;
+    }
+
+    .pickCard__body h3 {
+        font-size: 13px;
+    }
+}
